@@ -7,9 +7,11 @@ const Contact = () => {
     const [modalStatus, setModalStatus] = useState(null);
 
     const handleSubmit = (e) => {
-        // We set it to success immediately as infinite-iframe is a one-way submission
         setModalStatus('success');
-        e.target.reset(); // Auto-clear form
+        // Delay the reset to ensure the form data is sent before clearing
+        setTimeout(() => {
+            e.target.reset();
+        }, 100);
     };
 
     const closeModal = () => {
