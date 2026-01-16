@@ -7,12 +7,11 @@ const Skills = () => {
         { id: 1, icon: <FaHtml5 size={50} className="text-orange-500" />, name: 'HTML' },
         { id: 2, icon: <FaCss3Alt size={50} className="text-blue-500" />, name: 'CSS' },
         { id: 3, icon: <FaJs size={50} className="text-yellow-400" />, name: 'JavaScript' },
-        { id: 4, icon: <FaReact size={50} className="text-blue-400" />, name: 'React' },
+        { id: 4, icon: <FaReact size={50} className="text-blue-400 group-hover:animate-spin-slow" />, name: 'React' },
         { id: 5, icon: <FaGithub size={50} className="text-gray-100" />, name: 'GitHub' },
         { id: 6, icon: <FaNode size={50} className="text-green-500" />, name: 'Node.js' },
         { id: 7, icon: <SiMongodb size={50} className="text-green-600" />, name: 'MongoDB' },
         { id: 8, icon: <SiTailwindcss size={50} className="text-sky-400" />, name: 'Tailwind' },
-        // Add more as needed
     ];
 
     const containerVariant = {
@@ -31,11 +30,13 @@ const Skills = () => {
     };
 
     return (
-        <div name='skills' className='w-full min-h-screen bg-primary text-gray-300 py-20'>
-            {/* Container */}
-            <div className='max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full'>
+        <div name='skills' className='w-full min-h-screen bg-primary text-gray-300 py-20 relative overflow-hidden'>
+            {/* Background Animations */}
+            <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] animate-pulse pointer-events-none" />
+
+            <div className='max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full z-10 relative'>
                 <div className='pb-8'>
-                    <p className='text-4xl font-bold inline border-b-4 border-accent'>Skills</p>
+                    <p className='text-4xl font-bold inline border-b-4 border-accent text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-gray-400'>Skills</p>
                     <p className='py-4 text-muted'>// These are the technologies I've worked with</p>
                 </div>
 
@@ -44,16 +45,17 @@ const Skills = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className='w-full grid grid-cols-2 sm:grid-cols-4 gap-4 text-center py-8'
+                    className='w-full grid grid-cols-2 sm:grid-cols-4 gap-6 text-center py-8'
                 >
                     {skills.map((skill) => (
                         <motion.div
                             key={skill.id}
                             variants={itemVariant}
-                            className='shadow-md shadow-[#040c16] hover:scale-110 duration-500 bg-secondary py-4 rounded-md'
+                            whileHover={{ scale: 1.05 }}
+                            className='group shadow-lg shadow-[#040c16] hover:shadow-accent/20 bg-white/5 backdrop-blur-sm border border-white/5 hover:border-accent/50 py-8 rounded-xl transition-all duration-300 cursor-pointer'
                         >
-                            <div className='flex justify-center'>{skill.icon}</div>
-                            <p className='my-4 font-medium'>{skill.name}</p>
+                            <div className='flex justify-center transform group-hover:scale-110 duration-300'>{skill.icon}</div>
+                            <p className='mt-4 font-medium tracking-wide'>{skill.name}</p>
                         </motion.div>
                     ))}
                 </motion.div>
